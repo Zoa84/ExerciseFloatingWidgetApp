@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <RelativeLayout
+        android:id="@+id/container_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:ignore="UselessParent">
+        <!--Layout for collapsed view-->
+        <RelativeLayout
+            android:id="@+id/collapse_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="visible">
+            <ImageView
+                android:id="@+id/collapsed_iv"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_marginTop="8dp"
+                android:src="@drawable/bubble"
+                tools:ignore="ContentDescription" />
+            <ImageView
+                android:id="@+id/close_btn"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginStart="50dp"
+                android:src="@drawable/close"
+                tools:ignore="ContentDescription" />
+        </RelativeLayout>
+        <!--Layout for expanded view-->
+        <LinearLayout
+            android:visibility="gone"
+            android:id="@+id/expanded_layout"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:background="#00C1E7"
+            android:orientation="horizontal"
+            android:padding="5dp">
+            <!--<ImageView
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:src="@drawable/diamond"
+                tools:ignore="ContentDescription" />-->
+            <TextView
+                android:lineSpacingExtra="1dp"
+                android:layout_width="100dp"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:padding="5dp"
+                android:text="Test Message"
+                android:textColor="@android:color/white"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <Button
+                    android:id="@+id/button2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Button2" />
+
+                <Button
+                    android:id="@+id/button1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Button1" />
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/close_button"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_alignTop="@+id/expanded_layout"
+                android:layout_alignEnd="@+id/expanded_layout"
+                android:layout_gravity="right"
+                android:src="@drawable/close"
+                tools:ignore="ContentDescription" />
+        </LinearLayout>
+    </RelativeLayout>
+</LinearLayout>

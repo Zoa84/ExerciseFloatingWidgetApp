@@ -1,0 +1,18 @@
+Show a regular round clock, which when entering a rest preiod, will highlight the time left until the next set
+
+
+be able to set up what kind of workout one wants, in my case I mostly want to be able to set:
+how many circuits in a total run
+how many different exercises in a circuit (for me 3)
+-and then set what each exercise is
+how many sets per circuit (dependant on the exercise)
+how many reps per set (will be the same reps for all sets, could add customisation later)
+
+
+Need an activity or page for setting up a workout
+
+Need an activity or page for selecting any existing workouts or to choiose to create one
+Have a play button to start a workout outright
+
+Need an activity for during workout, which includes the clock, a button to end a set when done, a button to end a rest early, a button to pause everything, a button to end entire workout. Normally the timer will finish the rest and be in 'set' mode waiting for the user
+
