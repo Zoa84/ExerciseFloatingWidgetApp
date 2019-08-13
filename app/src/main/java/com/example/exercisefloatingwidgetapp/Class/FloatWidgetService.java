@@ -4,6 +4,7 @@ import android.app.Service;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.PixelFormat;
+import android.os.Bundle;
 import android.os.IBinder;
 import android.util.Log;
 import android.view.Gravity;
@@ -18,6 +19,8 @@ import com.example.exercisefloatingwidgetapp.R;
 public class FloatWidgetService extends Service {
     private WindowManager mWindowManager;
     private View mFloatingWidget;
+    int iWidth;
+    int iHeight;
     public FloatWidgetService() {
     }
     @Override
@@ -47,8 +50,8 @@ public class FloatWidgetService extends Service {
         }
         //Set the starting position of the created bubble
         params.gravity = Gravity.TOP | Gravity.START;
-        //Get the width of the phone for the starting X position
-        params.x = Resources.getSystem().getDisplayMetrics().widthPixels;
+        //Set the start position for the widget
+        params.x = 0;
         params.y = 200;
         mWindowManager = (WindowManager) getSystemService(WINDOW_SERVICE);
         mWindowManager.addView(mFloatingWidget, params);
@@ -85,9 +88,8 @@ public class FloatWidgetService extends Service {
                         initialY = params.y;
                         initialTouchX = event.getRawX();
                         initialTouchY = event.getRawY();
-                        Log.d("test", "initialX: " + initialX);
-                        Log.d("test", "initialY: " + initialY);
-                        Log.d("DEBUG MSG", ": " + collapsedView.getWidth());
+                        Log.d("DEBUG", "initialX: " + initialX);
+                        Log.d("DEBUG", "initialY: " + initialY);
                         return true;
                     //When a finger is released from the widget (up)
                     case MotionEvent.ACTION_UP:
@@ -105,11 +107,18 @@ public class FloatWidgetService extends Service {
                     case MotionEvent.ACTION_MOVE:
                         params.x = initialX + (int) (event.getRawX() - initialTouchX);
                         params.y = initialY + (int) (event.getRawY() - initialTouchY);
+                        //If the view is collapsed, make sure it's position is within the screen
                         if (isViewCollapsed()) {
                             if (params.x > Resources.getSystem().getDisplayMetrics().widthPixels - collapsedView.getWidth()) {
                                 params.x = Resources.getSystem().getDisplayMetrics().widthPixels - collapsedView.getWidth();
-                            } else if (params.x < collapsedView.getWidth()) {
-                                params.x = collapsedView.getWidth();
+                            } else if (params.x < 0) {
+                                params.x = 0;
+                            }
+
+                            if (params.y > Resources.getSystem().getDisplayMetrics().heightPixels - collapsedView.getHeight()) {
+                                params.y = Resources.getSystem().getDisplayMetrics().heightPixels - collapsedView.getHeight();
+                            } else if (params.y < 0) {
+                                params.y = 0;
                             }
                         }
                         mWindowManager.updateViewLayout(mFloatingWidget, params);

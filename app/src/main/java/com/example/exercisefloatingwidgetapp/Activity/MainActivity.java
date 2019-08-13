@@ -7,8 +7,10 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.exercisefloatingwidgetapp.Class.FloatWidgetService;
@@ -38,13 +40,36 @@ public class MainActivity extends AppCompatActivity {
 
     //Start up the app
     private void initializeView() {
+        /*EditText tWidth = findViewById((R.id.editTextWidth));
+        EditText tHeight = findViewById((R.id.editTextHeight));
+        Log.d("DEBUG: ", "" + tWidth.getText());
+
+        if (Integer.parseInt(tWidth.getText().toString()) > 100) {
+            tWidth.setText("100");
+        }
+        else if (Integer.parseInt(tWidth.getText().toString()) < 1) {
+            tWidth.setText("1");
+        }
+
+        if (Integer.parseInt(tHeight.getText().toString()) > 100) {
+            tHeight.setText("100");
+        }
+        else if (Integer.parseInt(tHeight.getText().toString()) < 1) {
+            tHeight.setText("1");
+        }*/
+
         //Find the button for creating the floating widget
         Button mButton= findViewById(R.id.create_button);
         mButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, FloatWidgetService.class);
+                /*EditText tWidth = findViewById((R.id.editTextWidth));
+                EditText tHeight = findViewById((R.id.editTextHeight));
+                intent.putExtra("width", Integer.parseInt(tWidth.getText().toString()));
+                intent.putExtra("height", Integer.parseInt(tHeight.getText().toString()));*/
                 //Start the floating widget
-                startService(new Intent(MainActivity.this, FloatWidgetService.class));
+                startService(intent);
                 //Close down the normal app
                 finish();
             }
